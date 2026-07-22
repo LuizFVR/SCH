@@ -4,7 +4,10 @@ Sistema para criação, publicação e análise de pesquisas de satisfação em 
 
 ## Funcionalidades atuais
 
-- painel responsivo com indicadores;
+- painel responsivo com indicadores reais de satisfação, respostas, pesquisas e alertas;
+- resultados filtráveis por período, pesquisa e setor;
+- gráficos de volume, distribuição de notas e ranking de setores;
+- exportação CSV protegida pelo escopo de acesso do usuário e registrada na auditoria;
 - criação de rascunhos e publicação transacional de pesquisas;
 - perguntas de estrelas, NPS, sim/não, escolha única ou múltipla e texto;
 - seleção de vários setores e QR Code individual para cada ponto de publicação;
@@ -23,7 +26,7 @@ Sistema para criação, publicação e análise de pesquisas de satisfação em 
 - cadastro de usuários pelo administrador;
 - Docker para instalação no Debian.
 
-O ambiente local usa `AUTH_DEMO_MODE=true` em `.env.local` porque não há um servidor PostgreSQL ativo nesta máquina. Esse modo é automaticamente recusado em produção.
+O ambiente local pode usar `AUTH_DEMO_MODE=true` quando não houver um PostgreSQL ativo. Esse modo é automaticamente recusado em produção.
 
 ## Preparação do banco
 

@@ -1,0 +1,57 @@
+.filters { margin: 30px 0 16px; padding: 15px; display: grid; grid-template-columns: 150px minmax(210px, 1fr) minmax(210px, 1fr) auto auto; align-items: end; gap: 10px; border: 1px solid var(--border); border-radius: 14px; background: white; }
+.filters label { display: grid; gap: 6px; }
+.filters label span { color: #718487; font-size: 8px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; }
+.filters select { height: 39px; padding: 0 10px; font-size: 10px; }
+.clear { align-self: center; color: var(--teal); font-size: 9px; font-weight: 800; }
+.metrics { margin-bottom: 16px; }
+.grid { margin-bottom: 16px; display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(300px, .8fr); gap: 16px; }
+.volumeChart { height: 235px; padding: 28px 22px 18px; display: flex; align-items: flex-end; gap: 5px; overflow-x: auto; }
+.volumeColumn { min-width: 18px; height: 100%; flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; gap: 6px; }
+.volumeColumn strong { min-height: 10px; color: #688084; font-size: 7px; }
+.volumeColumn span { width: min(24px, 80%); min-height: 2px; border-radius: 5px 5px 2px 2px; background: linear-gradient(180deg, #5cb7ac, var(--teal)); }
+.volumeColumn small { color: #89989a; font-size: 7px; white-space: nowrap; transform: rotate(-42deg); transform-origin: center; }
+.distribution { padding: 20px 22px; display: grid; gap: 16px; }
+.distribution > div { display: grid; grid-template-columns: 35px 1fr 34px 26px; align-items: center; gap: 8px; }
+.distribution span, .distribution strong, .distribution small { font-size: 9px; }
+.distribution > div > div { height: 8px; overflow: hidden; border-radius: 99px; background: #edf2f0; }
+.distribution i { height: 100%; display: block; border-radius: inherit; background: linear-gradient(90deg, #d8ae3b, #ebc55e); }
+.distribution strong { text-align: right; }
+.distribution small { color: #8a999b; text-align: right; }
+.ranking { padding: 8px 22px 18px; }
+.ranking article { min-height: 70px; display: grid; grid-template-columns: 25px 1fr 40px; align-items: center; gap: 12px; border-top: 1px solid #edf1ef; }
+.ranking article:first-child { border-top: 0; }
+.ranking article > span { width: 23px; height: 23px; display: grid; place-items: center; border-radius: 7px; color: var(--teal); background: var(--teal-soft); font-size: 8px; font-weight: 850; }
+.ranking article > div > strong, .ranking article > div > small { display: block; }
+.ranking article > div > strong { font-size: 10px; }
+.ranking article > div > div { height: 5px; margin: 7px 0 5px; overflow: hidden; border-radius: 99px; background: #edf2f0; }
+.ranking i { height: 100%; display: block; border-radius: inherit; background: var(--teal); }
+.ranking small { color: #839295; font-size: 8px; }
+.ranking b { color: var(--navy); font-family: Georgia, serif; font-size: 19px; text-align: right; }
+.surveyList { padding: 8px 20px 18px; }
+.surveyList article { min-height: 63px; display: grid; grid-template-columns: 1fr auto 35px; align-items: center; gap: 10px; border-top: 1px solid #edf1ef; }
+.surveyList article:first-child { border-top: 0; }
+.surveyList strong, .surveyList span { display: block; }
+.surveyList strong { font-size: 9px; }
+.surveyList span { margin-top: 4px; color: #829295; font-size: 8px; }
+.surveyList a { color: var(--teal); font-size: 8px; font-weight: 800; }
+.comments { padding: 12px 22px 22px; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+.comments article { padding: 15px; border: 1px solid #e2e9e7; border-radius: 11px; background: #fcfdfc; }
+.comments header { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; }
+.comments header strong, .comments header span { display: block; }
+.comments header strong { font-size: 9px; }
+.comments header span, .comments time, .comments small { color: #849497; font-size: 7px; }
+.comments header span { margin-top: 3px; }
+.comments p { margin: 13px 0 9px; color: #4f666a; font-family: Georgia, serif; font-size: 13px; line-height: 1.5; }
+
+@media (max-width: 1100px) {
+  .filters { grid-template-columns: 1fr 1fr; }
+  .filters button { width: fit-content; }
+  .grid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 680px) {
+  .filters { grid-template-columns: 1fr; }
+  .filters button { width: 100%; }
+  .comments { grid-template-columns: 1fr; padding-inline: 15px; }
+  .volumeChart { padding-inline: 15px; }
+}
