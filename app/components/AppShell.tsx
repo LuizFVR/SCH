@@ -5,7 +5,7 @@ import { requireUser } from "../../lib/auth";
 const navigation = [
   { id: "inicio", label: "Visão geral", href: "/", glyph: "VI" },
   { id: "pesquisas", label: "Pesquisas", href: "/pesquisas", glyph: "PE" },
-  { id: "alertas", label: "Alertas", href: "/alertas", glyph: "AL", badge: "3" },
+  { id: "alertas", label: "Alertas", href: "/alertas", glyph: "AL" },
   { id: "estrutura", label: "Unidades e setores", href: "/estrutura", glyph: "US" },
   { id: "usuarios", label: "Usuários", href: "/usuarios", glyph: "GE" },
 ];
@@ -52,7 +52,6 @@ export async function AppShell({
             <Link className={active === item.id ? "nav-link nav-link-active" : "nav-link"} href={item.href} key={item.id}>
               <span className="nav-glyph">{item.glyph}</span>
               <span>{item.label}</span>
-              {item.badge ? <span className="nav-badge">{item.badge}</span> : null}
             </Link>
           ))}
         </nav>
