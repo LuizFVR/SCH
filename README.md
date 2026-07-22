@@ -8,7 +8,9 @@ Sistema para criação, publicação e análise de pesquisas de satisfação em 
 - resultados filtráveis por período, pesquisa e setor;
 - gráficos de volume, distribuição de notas e ranking de setores;
 - exportação CSV protegida pelo escopo de acesso do usuário e registrada na auditoria;
-- criação de rascunhos e publicação transacional de pesquisas;
+- criação, edição e publicação posterior de rascunhos;
+- pausa, retomada e encerramento de publicações;
+- novas versões sem apagar respostas anteriores, com substituição segura dos QR Codes;
 - perguntas de estrelas, NPS, sim/não, escolha única ou múltipla e texto;
 - seleção de vários setores e QR Code individual para cada ponto de publicação;
 - biblioteca compartilhada para clonar e adaptar perguntas de outros setores;
@@ -58,13 +60,14 @@ npm run dev
 
 A aplicação fica disponível em `http://localhost:3000`.
 
-Para validar o fluxo completo com o servidor de desenvolvimento e o PostgreSQL ativos:
+Com o servidor e o PostgreSQL ativos, execute as validações integradas:
 
 ```bash
 npm run test:e2e
+npm run test:lifecycle
 ```
 
-Esse teste cria dados temporários, valida login, publicação, QR Code, resposta, criptografia, bloqueio de duplicidade e alerta, e remove os registros de teste ao terminar.
+Os testes criam dados temporários, validam os fluxos completos e removem os registros de teste ao terminar.
 
 ## Implantação
 
