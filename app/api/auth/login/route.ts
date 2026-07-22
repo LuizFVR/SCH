@@ -1,6 +1,7 @@
 import { and, eq } from "drizzle-orm";
 import { NextResponse } from "next/server";
 import { auditLogs, users } from "../../../../db/schema";
+import { adminUrl } from "../../../../lib/admin-url";
 import { createSession } from "../../../../lib/auth";
 import { getDatabase, isDemoMode } from "../../../../lib/database";
 import { clearLoginFailures, isLoginBlocked, normalizeEmail, registerLoginFailure } from "../../../../lib/login-protection";
@@ -9,13 +10,13 @@ import { consumePasswordVerificationCost, verifyPassword } from "../../../../lib
 export const runtime = "nodejs";
 
 function loginRedirect(request: Request, error?: string) {
-  const url = new URL("/login", request.url);
+  const url = adminUrl("/login", request);
   if (error) url.searchParams.set("error", error);
   return NextResponse.redirect(url, 303);
 }
 
 export async function POST(request: Request) {
-  if (isDemoMode()) return NextResponse.redirect(new URL("/", request.url), 303);
+  if (isDemoMode()) return NextResponse.redirect(adminUrl("/", request), 303);
 
   const formData = await request.formData();
   const email = normalizeEmail(String(formData.get("email") ?? ""));
@@ -44,7 +45,7 @@ export async function POST(request: Request) {
     await database.insert(auditLogs).values({ hospitalId: user.hospitalId, actorId: user.id, action: "AUTH_LOGIN", entityType: "USER", entityId: user.id });
     await createSession(user.id, remember);
 
-    return NextResponse.redirect(new URL("/", request.url), 303);
+    return NextResponse.redirect(adminUrl("/", request), 303);
   } catch (error) {
     console.error("Falha ao autenticar o usuário.", error instanceof Error ? error.message : "Erro desconhecido");
     return loginRedirect(request, "unavailable");

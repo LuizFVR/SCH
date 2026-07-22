@@ -8,6 +8,7 @@ import {
   surveys,
   surveyVersions,
 } from "../../../../../db/schema";
+import { adminUrl } from "../../../../../lib/admin-url";
 import { getCurrentUser } from "../../../../../lib/auth";
 import { getDatabase, isDemoMode } from "../../../../../lib/database";
 import { getAllowedSectorIds } from "../../../../../lib/surveys";
@@ -17,7 +18,7 @@ export const runtime = "nodejs";
 type LifecycleAction = "NEW_VERSION" | "PAUSE" | "RESUME" | "END";
 
 function redirectTo(request: Request, path: string) {
-  return NextResponse.redirect(new URL(path, request.url), 303);
+  return NextResponse.redirect(adminUrl(path, request), 303);
 }
 
 export async function POST(request: Request, { params }: { params: Promise<{ id: string }> }) {

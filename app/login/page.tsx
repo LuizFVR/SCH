@@ -1,4 +1,5 @@
 import { redirect } from "next/navigation";
+import { configuredAdminUrl } from "../../lib/admin-url";
 import { getCurrentUser } from "../../lib/auth";
 import { isDemoMode } from "../../lib/database";
 
@@ -12,6 +13,7 @@ export default async function LoginPage({ searchParams }: { searchParams: Promis
   if (await getCurrentUser()) redirect("/");
   const { error } = await searchParams;
   const errorMessage = error ? errorMessages[error] : undefined;
+  const loginAction = configuredAdminUrl("/api/auth/login")?.toString() ?? "/api/auth/login";
 
   return (
     <main className="login-page">
@@ -21,7 +23,7 @@ export default async function LoginPage({ searchParams }: { searchParams: Promis
         <small>Hospital principal · Ambiente interno</small>
       </section>
       <section className="login-form-wrap">
-        <form className="login-form" action="/api/auth/login" method="post">
+        <form className="login-form" action={loginAction} method="post">
           <span>ACESSO RESTRITO</span>
           <h2>Entre na sua conta</h2>
           <p>Use as credenciais fornecidas pelo administrador.</p>
