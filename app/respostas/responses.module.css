@@ -1,0 +1,63 @@
+.filters { margin: 30px 0 16px; padding: 15px; display: grid; grid-template-columns: 150px minmax(210px, 1fr) minmax(210px, 1fr) auto auto; align-items: end; gap: 10px; border: 1px solid var(--border); border-radius: 14px; background: white; }
+.filters label { display: grid; gap: 6px; }
+.filters label span { color: #718487; font-size: 8px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; }
+.filters select { height: 39px; padding: 0 10px; font-size: 10px; }
+.clear { align-self: center; color: var(--teal); font-size: 9px; font-weight: 800; }
+.tableWrap { overflow-x: auto; }
+.table { width: 100%; border-collapse: collapse; }
+.table th { padding: 12px 18px; color: #718487; background: #fafbf9; font-size: 8px; font-weight: 800; letter-spacing: .06em; text-align: left; text-transform: uppercase; }
+.table td { padding: 15px 18px; border-top: 1px solid #edf1ef; color: #52696e; font-size: 9px; vertical-align: middle; }
+.table td strong, .table td small { display: block; }
+.table td strong { color: var(--navy); font-size: 10px; }
+.table td small { margin-top: 3px; color: #879699; font-size: 8px; }
+.table time { white-space: nowrap; }
+.open { color: var(--teal); font-size: 9px; font-weight: 800; white-space: nowrap; }
+.visuallyHidden { position: absolute; width: 1px; height: 1px; padding: 0; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
+.back { color: var(--teal); font-size: 9px; font-weight: 800; }
+.summary { margin: 30px 0 16px; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; }
+.summary article { min-height: 92px; padding: 17px; border: 1px solid var(--border); border-radius: 13px; background: white; }
+.summary span, .summary strong, .summary small { display: block; }
+.summary span { color: #77898d; font-size: 8px; font-weight: 800; letter-spacing: .05em; text-transform: uppercase; }
+.summary strong { margin-top: 9px; color: var(--navy); font-family: Georgia, serif; font-size: 18px; font-weight: 600; }
+.summary small { margin-top: 4px; color: #859598; font-size: 8px; }
+.detailGrid { display: grid; grid-template-columns: minmax(0, 1.45fr) minmax(280px, .55fr); gap: 16px; }
+.answerList { padding: 4px 22px 18px; }
+.answerList article { padding: 17px 0; border-top: 1px solid #edf1ef; }
+.answerList article:first-child { border-top: 0; }
+.answerList span { color: #829295; font-size: 8px; font-weight: 800; letter-spacing: .05em; text-transform: uppercase; }
+.answerList h3 { margin: 6px 0 10px; color: var(--navy); font-size: 11px; line-height: 1.45; }
+.answerList p { margin: 0; color: #4b6469; font-family: Georgia, serif; font-size: 14px; line-height: 1.55; white-space: pre-wrap; }
+.identity { padding: 18px 20px 22px; }
+.identityNotice { margin: 0 0 14px; padding: 11px 12px; border-radius: 9px; color: #536c70; background: #f1f5f4; font-size: 9px; line-height: 1.5; }
+.identityWarning { color: #805123; background: #fff5df; }
+.identityError { color: #98473f; background: #fff1ef; }
+.identity dl { margin: 0; display: grid; gap: 13px; }
+.identity dt { color: #829295; font-size: 8px; font-weight: 800; letter-spacing: .05em; text-transform: uppercase; }
+.identity dd { margin: 4px 0 0; color: var(--navy); font-size: 10px; font-weight: 700; overflow-wrap: anywhere; }
+.identityActions { margin-top: 18px; display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }
+.identityActions form { margin: 0; }
+
+@media (max-width: 1100px) {
+  .filters { grid-template-columns: 1fr 1fr; }
+  .detailGrid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 760px) {
+  .summary { grid-template-columns: 1fr 1fr; }
+  .table thead { display: none; }
+  .table, .table tbody, .table tr, .table td { display: block; }
+  .table tr { padding: 13px 16px; border-top: 1px solid #edf1ef; }
+  .table tr:first-child { border-top: 0; }
+  .table td { min-height: 30px; padding: 5px 0 5px 88px; position: relative; border: 0; }
+  .table td::before { content: attr(data-label); position: absolute; left: 0; color: #829295; font-size: 8px; font-weight: 800; text-transform: uppercase; }
+  .table td:last-child { padding-left: 0; }
+}
+
+@media (max-width: 680px) {
+  .filters { grid-template-columns: 1fr; }
+  .filters button { width: 100%; }
+}
+
+@media (max-width: 480px) {
+  .summary { grid-template-columns: 1fr; }
+}

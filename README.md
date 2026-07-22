@@ -8,6 +8,9 @@ Sistema para criação, publicação e análise de pesquisas de satisfação em 
 - resultados filtráveis por período, pesquisa e setor;
 - gráficos de volume, distribuição de notas e ranking de setores;
 - exportação CSV protegida pelo escopo de acesso do usuário e registrada na auditoria;
+- consulta individual das respostas, com filtros de período, pesquisa e setor;
+- identificação do paciente oculta por padrão e revelação restrita a perfis autorizados;
+- auditoria automática de cada acesso aos dados pessoais de uma resposta;
 - criação, edição e publicação posterior de rascunhos;
 - pausa, retomada e encerramento de publicações;
 - novas versões sem apagar respostas anteriores, com substituição segura dos QR Codes;
@@ -65,6 +68,7 @@ Com o servidor e o PostgreSQL ativos, execute as validações integradas:
 ```bash
 npm run test:e2e
 npm run test:lifecycle
+npm run test:responses
 ```
 
 Os testes criam dados temporários, validam os fluxos completos e removem os registros de teste ao terminar.

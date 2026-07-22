@@ -1,6 +1,8 @@
+import Link from "next/link";
 import { AppShell, Panel, StatusPill } from "../components/AppShell";
 import { requireUser } from "../../lib/auth";
 import { isDemoMode } from "../../lib/database";
+import { listOperationalAlerts } from "../../lib/response-management";
 import { listAlerts } from "../../lib/surveys";
 import { resolveAlert } from "./actions";
 
@@ -8,10 +10,12 @@ const timeFormatter = new Intl.DateTimeFormat("pt-BR", { day: "2-digit", month: 
 
 export default async function AlertsPage() {
   const user = await requireUser();
-  const alertItems = await listAlerts(user);
+  const demoMode = isDemoMode();
+  const alertItems = demoMode
+    ? (await listAlerts(user)).map((alert) => ({ ...alert, responseId: null }))
+    : await listOperationalAlerts(user);
   const today = new Date();
   const newToday = alertItems.filter((alert) => alert.createdAt.toDateString() === today.toDateString()).length;
-  const demoMode = isDemoMode();
 
   return (
     <AppShell active="alertas" eyebrow="Acompanhamento" title="Alertas" subtitle="Avaliações abaixo do limite configurado, organizadas por prioridade.">
@@ -21,7 +25,10 @@ export default async function AlertsPage() {
           {alertItems.map((alert) => <article key={alert.id}>
             <span className={`alert-priority ${alert.score === 1 ? "critical-dot" : "warning-dot"}`} />
             <div><div className="alert-meta"><StatusPill tone={alert.score === 1 ? "critical" : "warning"}>{alert.score ?? "—"} estrela{alert.score === 1 ? "" : "s"}</StatusPill><time>{timeFormatter.format(alert.createdAt)}</time></div><h3>{alert.sectorName} · {alert.unitName}</h3><p>{alert.reason}</p></div>
-            <form action={resolveAlert}><input type="hidden" name="alertId" value={alert.id} /><button disabled={demoMode} className="button button-secondary" type="submit">{demoMode ? "Exemplo" : "Marcar como resolvido"}</button></form>
+            <div style={{ display: "grid", gap: 7 }}>
+              {alert.responseId ? <Link className="button button-secondary" href={`/respostas/${alert.responseId}`}>Ver resposta</Link> : null}
+              <form action={resolveAlert}><input type="hidden" name="alertId" value={alert.id} /><button disabled={demoMode} className="button button-secondary" type="submit">{demoMode ? "Exemplo" : "Marcar como resolvido"}</button></form>
+            </div>
           </article>)}
         </div>}
       </Panel>

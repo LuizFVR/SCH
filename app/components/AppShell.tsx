@@ -6,6 +6,7 @@ const navigation = [
   { id: "inicio", label: "Visão geral", href: "/", glyph: "VI" },
   { id: "pesquisas", label: "Pesquisas", href: "/pesquisas", glyph: "PE" },
   { id: "resultados", label: "Resultados", href: "/resultados", glyph: "RE" },
+  { id: "respostas", label: "Respostas", href: "/respostas", glyph: "RS" },
   { id: "alertas", label: "Alertas", href: "/alertas", glyph: "AL" },
   { id: "estrutura", label: "Unidades e setores", href: "/estrutura", glyph: "US" },
   { id: "usuarios", label: "Usuários", href: "/usuarios", glyph: "GE" },

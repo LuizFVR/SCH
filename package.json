@@ -12,6 +12,7 @@
     "test": "node --experimental-strip-types --test tests/password.test.ts && npm run build",
     "test:e2e": "node --env-file-if-exists=.env --env-file-if-exists=.env.local scripts/e2e.mjs",
     "test:lifecycle": "node --env-file-if-exists=.env --env-file-if-exists=.env.local scripts/lifecycle-e2e.mjs",
+    "test:responses": "node --env-file-if-exists=.env --env-file-if-exists=.env.local scripts/responses-e2e.mjs",
     "lint": "eslint . --ignore-pattern .next",
     "db:generate": "node --env-file-if-exists=.env --env-file-if-exists=.env.local ./node_modules/drizzle-kit/bin.cjs generate",
     "db:migrate": "node --env-file-if-exists=.env --env-file-if-exists=.env.local ./node_modules/drizzle-kit/bin.cjs migrate",
