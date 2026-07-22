@@ -2,14 +2,15 @@ import Link from "next/link";
 import type { ReactNode } from "react";
 import { requireUser } from "../../lib/auth";
 
-const navigation = [
+const navigation: Array<{ id: string; label: string; href: string; glyph: string; adminOnly?: boolean }> = [
   { id: "inicio", label: "Visão geral", href: "/", glyph: "VI" },
   { id: "pesquisas", label: "Pesquisas", href: "/pesquisas", glyph: "PE" },
   { id: "resultados", label: "Resultados", href: "/resultados", glyph: "RE" },
   { id: "respostas", label: "Respostas", href: "/respostas", glyph: "RS" },
   { id: "alertas", label: "Alertas", href: "/alertas", glyph: "AL" },
   { id: "estrutura", label: "Unidades e setores", href: "/estrutura", glyph: "US" },
-  { id: "usuarios", label: "Usuários", href: "/usuarios", glyph: "GE" },
+  { id: "usuarios", label: "Usuários", href: "/usuarios", glyph: "GE", adminOnly: true },
+  { id: "auditoria", label: "Auditoria", href: "/auditoria", glyph: "AU", adminOnly: true },
 ];
 
 const roleLabels = {
@@ -50,7 +51,7 @@ export async function AppShell({
 
         <nav className="main-nav" aria-label="Navegação principal">
           <p>GESTÃO</p>
-          {navigation.filter((item) => item.id !== "usuarios" || user.role === "ADMIN").map((item) => (
+          {navigation.filter((item) => !item.adminOnly || user.role === "ADMIN").map((item) => (
             <Link className={active === item.id ? "nav-link nav-link-active" : "nav-link"} href={item.href} key={item.id}>
               <span className="nav-glyph">{item.glyph}</span>
               <span>{item.label}</span>
